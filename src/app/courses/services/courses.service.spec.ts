@@ -109,9 +109,8 @@ describe("CourseService", () => {
     });
 
     const req = httpTestingController.expectOne(
-      req => req.url == '/api/lessons'
+      req => req.method === 'GET' && req.url === '/api/lessons'        
     );
-    expect(req.request.method).toEqual("GET");
     expect(req.request.params.get("courseId")).toEqual("12");
     expect(req.request.params.get("filter")).toEqual("");
     expect(req.request.params.get("sortOrder")).toEqual("asc");
