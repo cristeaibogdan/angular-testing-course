@@ -6,10 +6,10 @@ import { LoggerService } from "./logger.service";
 // To focus on a specific test suite, replace `describe` with `fdescribe`
 describe("CalculatorService", () => {
   let underTest: CalculatorService;
-  let loggerSpy: LoggerService;
+  let loggerSpy: jasmine.SpyObj<LoggerService>; // interesting thing to look out for.
 
   beforeEach(() => {
-    loggerSpy = jasmine.createSpyObj("LoggerService", ["log"]);
+    loggerSpy = jasmine.createSpyObj<LoggerService>("LoggerService", ["log"]);
     TestBed.configureTestingModule({
       providers: [
         CalculatorService, // even though it works without it being here, it should be added to avoid hidden coupling
